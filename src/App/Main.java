@@ -14,8 +14,7 @@ import javax.swing.*;
 public class Main {
     /**
      * Metodo que se ejecuta al iniciar el programa
-     * 
-     * @param args Argumentos de la linea de comandos
+     * * @param args Argumentos de la linea de comandos
      */
     public static void main(String[] args) {
         // Metodo que se ejecuta al iniciar el programa

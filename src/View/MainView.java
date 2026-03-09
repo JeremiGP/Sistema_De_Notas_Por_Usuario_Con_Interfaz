@@ -44,7 +44,7 @@ public class MainView extends JFrame {
         // Agregamos el campo de búsqueda al panel izquierdo
         JPanel pnlBuscar = new JPanel(new BorderLayout(5, 5));
         pnlBuscar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        pnlBuscar.add(new JLabel("🔍 Buscar por título:"), BorderLayout.NORTH);
+        pnlBuscar.add(new JLabel("Buscar por título:"), BorderLayout.NORTH);
         pnlBuscar.add(txtBuscar, BorderLayout.CENTER);
         pnlIzquierdo.add(pnlBuscar, BorderLayout.NORTH);
 
@@ -98,13 +98,13 @@ public class MainView extends JFrame {
 
         // Botón de guardar nota (Destacado)
         btnGuardar = new JButton("Guardar Nota");
-        btnGuardar.setBackground(new Color(76, 175, 80));
-        btnGuardar.setForeground(Color.WHITE);
+        btnGuardar.setBackground(new Color(76, 175, 80)); // Verde [cite: 923]
+        btnGuardar.setForeground(Color.WHITE); // [cite: 924]
 
         // Botón de eliminar nota (Peligro)
         btnEliminar = new JButton("Eliminar Nota");
-        btnEliminar.setBackground(new Color(244, 67, 54));
-        btnEliminar.setForeground(Color.WHITE);
+        btnEliminar.setBackground(new Color(244, 67, 54)); // Rojo [cite: 923]
+        btnEliminar.setForeground(Color.WHITE); // [cite: 924]
 
         // Botón de borrar todas las notas
         btnBorrarTodas = new JButton("Borrar Todas");
