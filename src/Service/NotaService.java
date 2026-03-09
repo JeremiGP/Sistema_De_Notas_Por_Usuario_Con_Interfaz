@@ -1,27 +1,55 @@
 package Service;
 
+// Importaciones de la clase
 import Model.Nota;
+
+// Importaciones .io
 import java.io.*;
+
+// Importaciones .util
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que representa el servicio de notas
+ */
 public class NotaService {
+    // Atributos de la clase
     private String usernameActual;
 
+    /**
+     * Metodo que establece el usuario actual
+     * 
+     * @param username Nombre de usuario
+     */
     public void setUsuarioActual(String username) {
         this.usernameActual = username;
     }
 
+    /**
+     * Metodo que obtiene el nombre del archivo
+     * 
+     * @return Nombre del archivo
+     */
     private String getFileName() {
         return "notas_" + usernameActual + ".txt";
     }
 
+    /**
+     * Metodo que carga las notas
+     * 
+     * @return Lista de notas
+     */
     public List<Nota> cargarNotas() {
+        // Creamos la lista de notas
         List<Nota> notas = new ArrayList<>();
+        // Creamos el archivo
         File file = new File(getFileName());
+        // Validamos si el archivo existe
         if (!file.exists())
             return notas;
 
+        // Leemos el archivo
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
@@ -36,10 +64,17 @@ public class NotaService {
         return notas;
     }
 
+    /**
+     * Metodo que guarda las notas
+     * 
+     * @param notas Lista de notas
+     */
     public void guardarNotas(List<Nota> notas) {
+        // Validamos si el usuario actual es null
         if (usernameActual == null)
             return;
 
+        // Escribimos las notas en el archivo
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(getFileName()))) {
             for (Nota n : notas) {
                 String contenidoPlano = n.getContenido().replace("\n", "<br>");
@@ -51,7 +86,14 @@ public class NotaService {
         }
     }
 
+    /**
+     * Metodo que exporta las notas
+     * 
+     * @param archivoDestino Archivo de destino
+     * @param notas          Lista de notas
+     */
     public void exportarNotas(File archivoDestino, List<Nota> notas) {
+        // Escribimos las notas en el archivo
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoDestino))) {
             for (Nota n : notas) {
                 writer.write("TÍTULO: " + n.getTitulo());
