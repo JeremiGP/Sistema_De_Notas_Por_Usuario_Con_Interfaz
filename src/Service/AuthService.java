@@ -12,12 +12,12 @@ import java.io.*;
  */
 public class AuthService {
     // Atributos de la clase
-    private final String FILE_USERS = "usuarios.txt";
+    private final String FILE_USERS = "data/usuarios/usuarios.txt";
 
     /**
      * Metodo que registra un usuario
+     * * @param username Nombre de usuario
      * 
-     * @param username Nombre de usuario
      * @param password Contraseña del usuario
      * @return true si el usuario se registro correctamente, false en caso contrario
      */
@@ -28,8 +28,13 @@ public class AuthService {
 
         // Hasheamos la contraseña
         String hash = SecurityUtils.hashPassword(password);
+
+        // Aseguramos que la carpeta data/usuarios exista
+        File file = new File(FILE_USERS);
+        file.getParentFile().mkdirs();
+
         // Escribimos el usuario en el archivo
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_USERS, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.write(username + "," + hash);
             writer.newLine();
             return true;
@@ -41,8 +46,8 @@ public class AuthService {
 
     /**
      * Metodo que valida el login de un usuario
+     * * @param username Nombre de usuario
      * 
-     * @param username Nombre de usuario
      * @param password Contraseña del usuario
      * @return true si el usuario se valido correctamente, false en caso contrario
      */

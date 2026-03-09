@@ -19,8 +19,7 @@ public class NotaService {
 
     /**
      * Metodo que establece el usuario actual
-     * 
-     * @param username Nombre de usuario
+     * * @param username Nombre de usuario
      */
     public void setUsuarioActual(String username) {
         this.usernameActual = username;
@@ -28,17 +27,15 @@ public class NotaService {
 
     /**
      * Metodo que obtiene el nombre del archivo
-     * 
-     * @return Nombre del archivo
+     * * @return Nombre del archivo
      */
     private String getFileName() {
-        return "notas_" + usernameActual + ".txt";
+        return "data/notas/notas_" + usernameActual + ".txt";
     }
 
     /**
      * Metodo que carga las notas
-     * 
-     * @return Lista de notas
+     * * @return Lista de notas
      */
     public List<Nota> cargarNotas() {
         // Creamos la lista de notas
@@ -66,16 +63,19 @@ public class NotaService {
 
     /**
      * Metodo que guarda las notas
-     * 
-     * @param notas Lista de notas
+     * * @param notas Lista de notas
      */
     public void guardarNotas(List<Nota> notas) {
         // Validamos si el usuario actual es null
         if (usernameActual == null)
             return;
 
+        File file = new File(getFileName());
+        // Aseguramos que la carpeta data/notas exista
+        file.getParentFile().mkdirs();
+
         // Escribimos las notas en el archivo
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(getFileName()))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Nota n : notas) {
                 String contenidoPlano = n.getContenido().replace("\n", "<br>");
                 writer.write(n.getTitulo() + "---SEP---" + contenidoPlano);
@@ -88,9 +88,9 @@ public class NotaService {
 
     /**
      * Metodo que exporta las notas
+     * * @param archivoDestino Archivo de destino
      * 
-     * @param archivoDestino Archivo de destino
-     * @param notas          Lista de notas
+     * @param notas Lista de notas
      */
     public void exportarNotas(File archivoDestino, List<Nota> notas) {
         // Escribimos las notas en el archivo
