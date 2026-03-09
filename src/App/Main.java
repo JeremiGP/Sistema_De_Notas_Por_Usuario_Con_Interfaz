@@ -20,6 +20,17 @@ public class Main {
     public static void main(String[] args) {
         // Metodo que se ejecuta al iniciar el programa
         SwingUtilities.invokeLater(() -> {
+
+            // Añadido para que la aplicacion se vea mas bonita
+            // Contenido aprendido en base a internet y IA (Pequeña mejora que marca la
+            // diferencia o eso en mi opinion)
+            try {
+                // El Look & Feel Nimbus para un diseño más moderno
+                UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             // Creacion de la vista de login
             LoginView view = new LoginView();
             // Creacion del servicio de autenticacion
